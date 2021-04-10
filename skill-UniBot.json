@@ -1,0 +1,774 @@
+{
+  "intents": [
+    {
+      "intent": "acknowledge",
+      "examples": [
+        {
+          "text": "ok. Got it."
+        },
+        {
+          "text": "Thank you"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Courses",
+      "examples": [
+        {
+          "text": "Can you give faculty information?"
+        },
+        {
+          "text": "Timetable of examiations"
+        },
+        {
+          "text": "What are the subjects in the course?"
+        },
+        {
+          "text": "What courses do you offer?"
+        },
+        {
+          "text": "What is the cut-off rank?"
+        },
+        {
+          "text": "What is the fee?"
+        },
+        {
+          "text": "When do we have exams?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Extra-curricular",
+      "examples": [
+        {
+          "text": "Any upcoming events?"
+        },
+        {
+          "text": "Do you offer any scholarships?"
+        },
+        {
+          "text": "What are the sports?"
+        },
+        {
+          "text": "What clubs do we have?"
+        },
+        {
+          "text": "What competitions to be held?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "Good Afternoon"
+        },
+        {
+          "text": "Good Evening"
+        },
+        {
+          "text": "Good Morning"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "acknowledge",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "thank you",
+          "synonyms": [
+            "alright",
+            "Got it",
+            "ok",
+            "okay",
+            "Understood"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "clubs",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Non-Technical Clubs",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Technical Clubs",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "courses",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "courses",
+          "synonyms": [
+            "branches"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "exam",
+          "synonyms": [
+            "examinations",
+            "time table"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "faculty",
+          "synonyms": [
+            "lecturers",
+            "professors",
+            "teachers"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "fee",
+          "synonyms": [
+            "amount",
+            "cost",
+            "tution fee"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "rank",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "subjects",
+          "synonyms": [
+            "syllabus"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "extra-curricular",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "clubs",
+          "synonyms": [
+            "group"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "events",
+          "synonyms": [
+            "celebrations",
+            "competitions",
+            "fests",
+            "hackathons",
+            "seminars"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "scholarships",
+          "synonyms": [
+            "offers"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "sports",
+          "synonyms": [
+            "games"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "greetings",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Good Afternoon",
+          "synonyms": [
+            "ga, gud afternoon"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Evening",
+          "synonyms": [
+            "gud evg"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Morning",
+          "synonyms": [
+            "gm",
+            "gud morning"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Hello",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Hi",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_8_1618037044080",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Clubs",
+      "parent": "node_8_1617992183410",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@clubs",
+      "dialog_node": "node_1_1617993143759"
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Greetings || @greetings",
+      "dialog_node": "node_3_1617986526995",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Courses",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Courses || @courses",
+      "dialog_node": "node_7_1617987655835",
+      "previous_sibling": "node_3_1617986526995"
+    },
+    {
+      "type": "standard",
+      "title": "Extra-curricular",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Extra-curricular && @extra-curricular",
+      "dialog_node": "node_8_1617992183410",
+      "previous_sibling": "node_7_1617987655835"
+    },
+    {
+      "type": "standard",
+      "title": "Acknowledge",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you.  "
+              },
+              {
+                "text": "Contact 8181057057 for more information."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "conditions": "#acknowledge || @acknowledge",
+      "dialog_node": "node_8_1618037044080",
+      "previous_sibling": "node_8_1617992183410"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Morning! I am UniBot. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1617986526995",
+      "conditions": "@greetings:(Good Morning)",
+      "dialog_node": "response_10_1617986714336",
+      "previous_sibling": "response_3_1617986686543"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We are organising 36 hours Hackathon next week"
+              },
+              {
+                "text": "Selections for Sports Bout will start from last week of this month"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_8_1617992183410",
+      "conditions": "@extra-curricular:events",
+      "dialog_node": "response_10_1617992592390",
+      "previous_sibling": "node_1_1617993143759"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "MALAI, IOT, Android, Web Development, InCube"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1617993143759",
+      "conditions": "@clubs:(Technical Clubs)",
+      "dialog_node": "response_10_1617993725423"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We offer scholarships based on the ranks secured in AnuragCET."
+              },
+              {
+                "text": "100% scholarships for 1-10 ranks"
+              },
+              {
+                "text": "50% scholarships for 11-25 ranks"
+              },
+              {
+                "text": "For more information, visit https://anurag.edu.in/scholarships/"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_8_1617992183410",
+      "conditions": "@extra-curricular:scholarships",
+      "dialog_node": "response_10_1618038729492",
+      "previous_sibling": "response_5_1618037653638"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "CSE, IT - C,C++,Python, Java"
+              },
+              {
+                "text": "ECE- DLD,DBMS,C,Java"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_7_1617987655835",
+      "conditions": "@courses:subjects",
+      "dialog_node": "response_1_1617989968061",
+      "previous_sibling": "response_9_1617989951875"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Music, Dance, Art, NSS, Sports"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1617993143759",
+      "conditions": "@clubs:(Non-Technical Clubs)",
+      "dialog_node": "response_2_1617993786467",
+      "previous_sibling": "response_10_1617993725423"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Visit https://anurag.edu.in/examinations/"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1617987655835",
+      "conditions": "@courses:exam",
+      "dialog_node": "response_2_1618036428823",
+      "previous_sibling": "response_6_1617990902335"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi, I am UniBot. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1617986526995",
+      "conditions": "@greetings:Hi",
+      "dialog_node": "response_3_1617986686543",
+      "previous_sibling": "response_8_1617986636655"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Afternoon! I am UniBot. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1617986526995",
+      "conditions": "@greetings:(Good Afternoon)",
+      "dialog_node": "response_3_1617986758321",
+      "previous_sibling": "response_10_1617986714336"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Evening! I am UniBot. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1617986526995",
+      "conditions": "@greetings:(Good Evening)",
+      "dialog_node": "response_3_1617986782602",
+      "previous_sibling": "response_3_1617986758321"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "C - Dr.M.Sreedevi\nC++ , Java- Mr.V.Amarnath\nPython - Mr.G.Balaram\nDLD,DBMS - Dr.G.Bindhu Madhavi"
+              },
+              {
+                "text": "For more information, visit https://anurag.edu.in/faculties/"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1617987655835",
+      "conditions": "@courses:faculty",
+      "dialog_node": "response_5_1617990034649",
+      "previous_sibling": "response_1_1617989968061"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Clubs",
+            "options": [
+              {
+                "label": "Technical Clubs",
+                "value": {
+                  "input": {
+                    "text": "Technical clubs"
+                  }
+                }
+              },
+              {
+                "label": "Non-Technical Clubs",
+                "value": {
+                  "input": {
+                    "text": "Non-Technical Clubs"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_8_1617992183410",
+      "conditions": "@extra-curricular:clubs",
+      "dialog_node": "response_5_1617992610013",
+      "previous_sibling": "response_10_1617992592390"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We have cricket, basket ball, throw ball, volley ball, table tennis, badminton, kabaddi and kho-kho."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1617992183410",
+      "conditions": "@extra-curricular:sports",
+      "dialog_node": "response_5_1618037653638",
+      "previous_sibling": "response_5_1617992610013"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Rs.2,50,000 each year for a period of 4 years"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1617987655835",
+      "conditions": "@courses:fee",
+      "dialog_node": "response_6_1617990642706",
+      "previous_sibling": "response_5_1617990034649"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "CSE - below 10,000 rank"
+              },
+              {
+                "text": "It - below 11,000 rank"
+              },
+              {
+                "text": "ECE - below 12500"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_7_1617987655835",
+      "conditions": "@courses:rank",
+      "dialog_node": "response_6_1617990902335",
+      "previous_sibling": "response_6_1617990642706"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello, I am UniBot. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1617986526995",
+      "conditions": "@greetings:Hello",
+      "dialog_node": "response_8_1617986636655"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We offer CSE, IT and ECE ."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1617987655835",
+      "conditions": "@courses:courses",
+      "dialog_node": "response_9_1617989951875"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Welcome! We are happy to have you here."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "UniBot",
+  "language": "en",
+  "description": ""
+}
